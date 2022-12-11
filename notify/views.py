@@ -6,16 +6,14 @@ from .models import Notifications
 
 
 def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    success = False
+    if request.method == 'POST':
+        n = Notifications()
+        n.title = request.POST.get('title', '')
+        n.text = request.POST.get('text', '')
+        n.image = request.FILES['image']
+        n.name = request.POST.get('name', '')
+        n.save()
+        success = True
 
-
-def add(request):
-    n = Notifications()
-    n.title = request.POST.get('title', '')
-    n.text = request.POST.get('text', '')
-    n.image = request.POST.get('image', '')
-    n.name = request.POST.get('name', '')
-    n.save()
-    template = loader.get_template('added.html')
-    return HttpResponse(template.render())
+    return render(request, 'index.html', {"success": success})
