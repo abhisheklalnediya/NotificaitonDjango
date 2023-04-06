@@ -15,5 +15,6 @@ def index(request):
         n.name = request.POST.get('name', '')
         n.save()
         success = True
+    nall = Notifications.objects.all()
 
-    return render(request, 'index.html', {"success": success})
+    return render(request, 'index.html', {"success": success, "nall": nall})

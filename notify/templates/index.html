@@ -42,7 +42,35 @@
         <div class="toast-body">!Notification Added</div>
       </div>
     </div>
-    {% endif %}
+    <table>
+      <thead>
+
+        <t>
+      </thead>
+    </table>
+    {% endif %} 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Notification</th>
+          <th scope="col">Notification Title</th>
+          <th scope="col">Name</th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for i in nall %}
+        <tr>
+          <th scope="row">{{i.title}} </th>
+          <td>{{i.text}} </td>
+          <td>{{i.name}} </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    
+    
+     
   </div>
 </div>
 {% endblock content %}
